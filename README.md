@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+# Lab8ApiImplementation-client (front-end)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite UI for the **Lab8ApiImplementation** API (separate repo).
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+npm install
+npm run dev          # http://localhost:5173
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The API URL comes from `VITE_API_URL`. For local development it is set in `.env.development`
+(`http://localhost:5079`), so start the API repo first.
+
+## Build and deploy (e.g. Vercel, Netlify, Azure Static Web Apps)
+
+1. On the hosting platform, set the environment variable
+   `VITE_API_URL=https://<your-api-domain>` (no trailing slash needed).
+   Vite reads it at **build time**, so rebuild after changing it.
+2. Build command: `npm run build`, output folder: `dist`.
+3. In the API's settings, add this site's URL to CORS:
+   `Cors__AllowedOrigins__0=https://<your-frontend-domain>`.
+
+To build locally for production, copy `.env.example` to `.env.production.local`, set the URL, and run `npm run build`.

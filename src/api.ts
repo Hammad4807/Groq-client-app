@@ -1,6 +1,8 @@
 import type { ChatMessage, ChatResponse, ProblemDetails, RagResponse } from './types'
 
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5079'
+// The API is a separate deployment: its address comes from VITE_API_URL (set at build time)
+// The trailing slash is removed so `${API_URL}/api/...` never becomes "//api"
+const API_URL = (import.meta.env.VITE_API_URL ?? 'http://localhost:5079').replace(/\/+$/, '')
 
 // POST /api/chat
 export async function sendChat(messages: ChatMessage[]): Promise<ChatResponse> {
